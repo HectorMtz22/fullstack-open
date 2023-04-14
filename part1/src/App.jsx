@@ -5,10 +5,16 @@ function App() {
   console.log(date.toString(), a + b)
   return (
     <div>
-      <p>Hello World</p>
-      <p>My date is {date.toString()}</p>
-      <p>{a} + {b} = {a + b}</p>
+      <h1>Greetings</h1>
+      <Hello name="Hector"/>
+      <Hello />
     </div>
+  )
+}
+
+const Hello = ({name}) => {
+  return (
+    <p>Hello World {name}</p>
   )
 }
 
