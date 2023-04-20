@@ -1,3 +1,5 @@
-export const Total = ({exercises1, exercises2, exercises3}) => {
-  return <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+export const Total = ({parts}) => {
+  let totalQuantity = 0
+  parts.forEach((part) => totalQuantity += part.exercises)
+  return <p>Number of exercises {totalQuantity}</p>
 }

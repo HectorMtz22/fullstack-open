@@ -1,20 +1,20 @@
 import { Part } from "./Part"
 
-export const Content = (props) => {
-  const {part1, part2, part3, exercises1, exercises2, exercises3} = props
+export const Content = ({parts}) => {
+  const [part1, part2, part3] = parts
   return (
     <>
       <Part 
-        part={part1}
-        ex={exercises1}
+        part={part1.name}
+        ex={part1.exercises}
       />
       <Part 
-        part={part2}
-        ex={exercises2}
+        part={part2.name}
+        ex={part2.exercises}
       />
       <Part 
-        part={part3}
-        ex={exercises3}
+        part={part3.name}
+        ex={part3.exercises}
       />
     </>
   )
