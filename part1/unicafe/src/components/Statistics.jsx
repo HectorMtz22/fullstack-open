@@ -8,14 +8,16 @@ export const Statistics = ({good, neutral, bad}) => {
 
   if (all === 0) return <p>No feedback given</p>
   return (
-    <>
-      <StatisticLine title="Good" value={good} />
-      <StatisticLine title="Neutral" value={neutral} />
-      <StatisticLine title="Bad" value={bad} />
-      <StatisticLine title="All" value={all} />
-      <StatisticLine title="Average" value={average} />
-      <StatisticLine title="Positive" value={positive} finalText="%" />
-    </>
+    <table>
+      <tbody>
+        <StatisticLine title="Good" value={good} />
+        <StatisticLine title="Neutral" value={neutral} />
+        <StatisticLine title="Bad" value={bad} />
+        <StatisticLine title="All" value={all} />
+        <StatisticLine title="Average" value={average} />
+        <StatisticLine title="Positive" value={positive} finalText="%" />
+      </tbody>
+    </table>
   )
 }
 
