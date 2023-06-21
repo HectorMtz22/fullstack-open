@@ -12,9 +12,9 @@ export const Statistics = ({good, neutral, bad}) => {
       <Pair title="Good" value={good} />
       <Pair title="Neutral" value={neutral} />
       <Pair title="Bad" value={bad} />
-      <p>All {all}</p>
-      <p>Average {average}</p>
-      <p>Positive {positive} %</p>
+      <Pair title="All" value={all} />
+      <Pair title="Average" value={average} />
+      <Pair title="Positive" value={positive} finalText="%" />
     </>
   )
 }
