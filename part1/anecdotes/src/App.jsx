@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState} from 'react'
 
 const App = () => {
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState([])
 
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -13,6 +14,15 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
+
+  // Re-render 1 time only because its a constant
+  // Either include a useMemo for variable, or use a state for anecdotes
+  useEffect(() => {
+    const newArray = new Array(anecdotes.length).fill(0)
+    setVotes(newArray)
+    console.log(newArray);
+  }, [])
+
 
   const handleNextAnecdote = () => {
     const nextRandomNumber = Math.floor(Math.random() * anecdotes.length)
@@ -26,6 +36,7 @@ const App = () => {
       <p>
         {anecdotes[selected]}
       </p>
+      <p>has {votes[selected]} votes.</p>
       <button onClick={handleNextAnecdote}>Next Anecdote</button>
     </div>
   )
