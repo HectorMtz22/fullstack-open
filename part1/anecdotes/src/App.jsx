@@ -31,12 +31,19 @@ const App = () => {
     setSelected(nextRandomNumber)
   }
 
+  const handleVote = () => {
+    const newVotes = [...votes]
+    newVotes[selected] += 1
+    setVotes(newVotes)
+  }
+
   return (
     <div>
       <p>
         {anecdotes[selected]}
       </p>
       <p>has {votes[selected]} votes.</p>
+      <button onClick={handleVote}>Vote</button>
       <button onClick={handleNextAnecdote}>Next Anecdote</button>
     </div>
   )
