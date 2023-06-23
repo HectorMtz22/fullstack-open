@@ -1,4 +1,5 @@
 import { useEffect, useState} from 'react'
+import { Anecdote } from './components/Anecdote'
 
 const App = () => {
   const [selected, setSelected] = useState(0)
@@ -38,14 +39,17 @@ const App = () => {
   }
 
   return (
-    <div>
-      <p>
-        {anecdotes[selected]}
-      </p>
-      <p>has {votes[selected]} votes.</p>
+    <>
+      <h1>Anecdote for the day</h1>
+      <Anecdote
+        anecdote={anecdotes[selected]}
+        votes={votes[selected]}
+      />
       <button onClick={handleVote}>Vote</button>
       <button onClick={handleNextAnecdote}>Next Anecdote</button>
-    </div>
+
+      <h2>Anecdote with most votes</h2>
+    </>
   )
 }
 
