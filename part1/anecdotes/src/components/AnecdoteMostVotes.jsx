@@ -1,9 +1,18 @@
-import { useState } from "react"
 import { Anecdote } from "./Anecdote"
 import PropTypes from 'prop-types'
 
+// Because we use props, its not necessary to use useState hook
 export const AnecdoteMostVotes = ({anecdotes, votes}) => {
-    const [anecdoteIndex] = useState(0)
+    let anecdoteIndex = 0
+    let maxVotes = -Infinity
+
+    votes.forEach((vote, index) => {
+        if (maxVotes < vote) {
+            anecdoteIndex = index
+            maxVotes = vote
+        }
+    });
+
     return <Anecdote 
         anecdote={anecdotes[anecdoteIndex]}
         votes={votes[anecdoteIndex]}
