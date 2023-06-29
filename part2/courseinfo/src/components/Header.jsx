@@ -1,3 +1,3 @@
-export const Header = ({course}) => {
-  return  <h2>{course}</h2>
+export const Header = ({name}) => {
+  return  <h2>{name}</h2>
 }

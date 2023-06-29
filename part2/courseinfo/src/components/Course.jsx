@@ -3,11 +3,12 @@ import { Content } from "./Content"
 import { Total } from "./Total"
 
 export const Course = ({course}) => {
+  const {name, parts} = course
   return (
     <>
-      <Header course={course.name} />
-      <Content parts={course.parts} />
-      <Total parts={course.parts} />
+      <Header name={name} />
+      <Content parts={parts} />
+      <Total parts={parts} />
     </>
   )
 }
