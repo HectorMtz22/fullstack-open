@@ -8,13 +8,22 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("You submitted the form")
+    // console.log("You submitted the form")
     const newPerson = {name: newName}
+    const isNew = persons
+      .filter((person) => person.name === newName)
+      .length === 0
+    console.log("Es nuevo?", isNew)
+
+    if (!isNew) {
+      alert(`${newName} is already in the phonebook!`)
+      return 
+    }
     setPersons(persons.concat(newPerson))
   }
 
   const handleInputChange = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     setNewName(e.target.value)
   }
 
