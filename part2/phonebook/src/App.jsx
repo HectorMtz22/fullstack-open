@@ -5,11 +5,15 @@ const App = () => {
     { name: 'Arto Hellas' }
   ]) 
   const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
     // console.log("You submitted the form")
-    const newPerson = {name: newName}
+    const newPerson = {
+      name: newName,
+      number: newNumber
+    }
     const isNew = persons
       .filter((person) => person.name === newName)
       .length === 0
@@ -22,11 +26,6 @@ const App = () => {
     setPersons(persons.concat(newPerson))
   }
 
-  const handleInputChange = (e) => {
-    // console.log(e.target.value)
-    setNewName(e.target.value)
-  }
-
   return (
     <div>
       <h2>Phonebook</h2>
@@ -34,7 +33,13 @@ const App = () => {
         <div>
           name: <input 
             value={newName}
-            onChange={handleInputChange}
+            onChange={(e) => setNewName(e.target.value)}
+          />
+        </div>
+        <div>
+          number: <input
+            value={newNumber}
+            onChange={(e) => setNewNumber(e.target.value)}
           />
         </div>
         <div>
@@ -43,7 +48,7 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       {persons.map((person) => (
-        <p key={person.name}>{person.name}</p>
+        <p key={person.name}>{person.name} {person?.number}</p>
       ))}
     </div>
   )
