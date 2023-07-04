@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { Persons } from './components/Persons'
 import { PersonForm } from './components/PersonForm'
 import { Filter } from './components/Filter'
@@ -10,11 +11,25 @@ import { Filter } from './components/Filter'
 //     { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
 // ]
 
+const URL = 'http://localhost:3001/persons'
+
 const App = () => {
   const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+
+  useEffect(() => {
+    axios.get(URL)
+      .then(res => {
+        console.log({status: res.status, data: res.data})
+        setPersons(res.data)
+      })
+      .catch((err) => {
+        console.error(err)
+        console.warn("Server down")
+      })
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
