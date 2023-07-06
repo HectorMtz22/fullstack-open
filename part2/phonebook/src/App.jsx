@@ -1,4 +1,4 @@
-import axios from 'axios'
+import personsService from './services/persons'
 import { useEffect, useState } from 'react'
 import { Persons } from './components/Persons'
 import { PersonForm } from './components/PersonForm'
@@ -11,7 +11,6 @@ import { Filter } from './components/Filter'
 //     { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
 // ]
 
-const URL = 'http://localhost:3001/persons'
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
@@ -20,13 +19,13 @@ const App = () => {
   const [filter, setFilter] = useState('')
 
   useEffect(() => {
-    axios.get(URL)
-      .then(res => {
-        console.log({status: res.status, data: res.data})
-        setPersons(res.data)
+    personsService
+      .getAll()
+      .then(data => {
+        setPersons(data)
       })
-      .catch((err) => {
-        console.error(err)
+      .catch(() => {
+        alert("Server down")
         console.warn("Server down")
       })
   }, [])
