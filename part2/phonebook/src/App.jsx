@@ -46,7 +46,16 @@ const App = () => {
       alert(`${newName} is already in the phonebook!`)
       return 
     }
-    setPersons(persons.concat(newPerson))
+    personsService
+      .create(newPerson)
+      .then((data) => {
+        console.log(data)
+        setPersons(persons.concat(data))
+      })
+      .catch((err) => {
+        alert("Ocurrió un error", err)
+        console.log(err)
+      })
   }
 
   return (

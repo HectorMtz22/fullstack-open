@@ -11,4 +11,10 @@ const getAll = () => {
     })
 }
 
-export default {getAll}
+const create = (person) => {
+  return axios
+    .post(URL, person)
+    .then(res => res.data)
+}
+
+export default {getAll, create}
