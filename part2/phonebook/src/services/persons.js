@@ -14,7 +14,10 @@ const getAll = () => {
 const create = (person) => {
   return axios
     .post(URL, person)
-    .then(res => res.data)
+    .then(res => {
+      console.log(res.data)
+      return res.data
+    })
 }
 
 export default {getAll, create}
