@@ -1,7 +1,10 @@
-export const Persons = ({persons, filter}) => {
+export const Persons = ({persons, filter, onClick}) => {
   return persons
     .filter((person) => person.name.toLowerCase().includes(filter.toLowerCase()))
     .map((person) => (
-      <p key={person.name}>{person.name} {person?.number}</p>
+      <div key={person.name}>
+        <span>{person.name} {person?.number}</span>
+        <button onClick={() => onClick(person)}>Delete</button>
+      </div>
     ))
 }

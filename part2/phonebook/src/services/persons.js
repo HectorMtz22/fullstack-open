@@ -20,4 +20,10 @@ const create = (person) => {
     })
 }
 
-export default {getAll, create}
+const remove = (id) => {
+  return axios
+    .delete(`${URL}/${id}`)
+    .then(res => res.data)
+}
+
+export default {getAll, create, remove}

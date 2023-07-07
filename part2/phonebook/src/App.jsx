@@ -58,6 +58,23 @@ const App = () => {
       })
   }
 
+  const handleDelete = (person) => {
+    console.log("Delete", person)
+    const willRemove = confirm(`Are you sure you want to delete ${person.name}?`)
+    if (willRemove) {
+      console.log("Removing...")
+      personsService
+        .remove(person.id)
+        .then(
+          setPersons(persons.filter((p) => p.id !== person.id))
+        )
+        .catch((err) => {
+          alert("Ocurrió un error", err)
+          console.log(err)
+        })
+    }
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -77,6 +94,7 @@ const App = () => {
       <Persons 
         filter={filter}
         persons={persons}
+        onClick={handleDelete}
       />
       
     </div>
