@@ -37,13 +37,23 @@ const App = () => {
       name: newName,
       number: newNumber
     }
-    const isNew = persons
+    const recuperedId = persons
       .filter((person) => person.name === newName)
-      .length === 0
-    console.log("Es nuevo?", isNew)
+      .map((person) => person.id)[0]
+    console.log("Found:", recuperedId)
 
-    if (!isNew) {
-      alert(`${newName} is already in the phonebook!`)
+    if (recuperedId) {
+      const replace = confirm(`${newName} is already on the phonebook!. Replace it with a new one?`)
+      if (replace) {
+        personsService
+          .update(recuperedId, newPerson)
+          .then((data) => {
+            console.log("Updated", data)
+            setPersons(persons.filter(p => p.id !== data.id).concat(data))
+          })
+          .catch((err) => console.log(err))
+
+      }
       return 
     }
     personsService

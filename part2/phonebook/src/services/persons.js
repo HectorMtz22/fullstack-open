@@ -20,10 +20,17 @@ const create = (person) => {
     })
 }
 
+const update = (id, person) => {
+  console.log("Update Parameter", person)
+  return axios
+    .put(`${URL}/${id}`, person)
+    .then(res => res.data)
+}
+
 const remove = (id) => {
   return axios
     .delete(`${URL}/${id}`)
     .then(res => res.data)
 }
 
-export default {getAll, create, remove}
+export default {getAll, create, remove, update}
