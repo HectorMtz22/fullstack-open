@@ -52,6 +52,8 @@ const App = () => {
           .then((data) => {
             console.log("Updated", data)
             setPersons(persons.filter(p => p.id !== data.id).concat(data))
+            setSuccessMessage(`Updated ${data.name}!`)
+            setTimeout(() => setSuccessMessage(null), 5000)
           })
           .catch((err) => console.log(err))
 
@@ -63,6 +65,8 @@ const App = () => {
       .then((data) => {
         console.log(data)
         setPersons(persons.concat(data))
+        setSuccessMessage(`Added ${data.name}!`)
+        setTimeout(() => setSuccessMessage(null), 5000)
       })
       .catch((err) => {
         alert("Ocurrió un error", err)
