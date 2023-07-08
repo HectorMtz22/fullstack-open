@@ -90,9 +90,12 @@ const App = () => {
       console.log("Removing...")
       personsService
         .remove(person.id)
-        .then(
+        .then(() => {
           setPersons(persons.filter((p) => p.id !== person.id))
-        )
+          setMessageNotification(`Deleted ${person.name}!`)
+          setIsSuccessful(true)
+          setTimeout(() => setMessageNotification(null), 5000)
+        })
         .catch((err) => {
           alert("Ocurrió un error", err)
           console.log(err)
