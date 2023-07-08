@@ -18,7 +18,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
-  const [successMessage, setSuccessMessage] = useState("Added")
+  const [successMessage, setSuccessMessage] = useState(null)
 
   useEffect(() => {
     personsService
