@@ -18,7 +18,8 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
-  const [successMessage, setSuccessMessage] = useState(null)
+  const [messageNotification, setMessageNotification] = useState(null)
+  const [isSuccessful, setIsSuccessful] = useState(true)
 
   useEffect(() => {
     personsService
@@ -52,10 +53,17 @@ const App = () => {
           .then((data) => {
             console.log("Updated", data)
             setPersons(persons.filter(p => p.id !== data.id).concat(data))
-            setSuccessMessage(`Updated ${data.name}!`)
-            setTimeout(() => setSuccessMessage(null), 5000)
+            setMessageNotification(`Updated ${data.name}!`)
+            setIsSuccessful(true)
+            setTimeout(() => setMessageNotification(null), 5000)
           })
-          .catch((err) => console.log(err))
+          .catch((err) => {
+            console.log(err)
+            setPersons(persons.filter(p => p.id !== recuperedId))
+            setIsSuccessful(false)
+            setMessageNotification(`Information of ${newPerson.name} has been removed from the server!`)
+            setTimeout(() => setMessageNotification(null), 5000)
+          })
 
       }
       return 
@@ -65,8 +73,9 @@ const App = () => {
       .then((data) => {
         console.log(data)
         setPersons(persons.concat(data))
-        setSuccessMessage(`Added ${data.name}!`)
-        setTimeout(() => setSuccessMessage(null), 5000)
+        setMessageNotification(`Added ${data.name}!`)
+        setIsSuccessful(true)
+        setTimeout(() => setMessageNotification(null), 5000)
       })
       .catch((err) => {
         alert("Ocurrió un error", err)
@@ -94,7 +103,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={successMessage} />
+      <Notification message={messageNotification} isSuccessful={isSuccessful} />
       <Filter 
         filter={filter}
         setFilter={setFilter}
