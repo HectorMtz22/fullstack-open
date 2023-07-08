@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Persons } from './components/Persons'
 import { PersonForm } from './components/PersonForm'
 import { Filter } from './components/Filter'
+import { Notification } from './components/Notification'
 
 // const testingData = [
 //     { name: 'Arto Hellas', number: '040-123456', id: 1 },
@@ -17,6 +18,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+  const [successMessage, setSuccessMessage] = useState("Added")
 
   useEffect(() => {
     personsService
@@ -88,6 +90,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={successMessage} />
       <Filter 
         filter={filter}
         setFilter={setFilter}
