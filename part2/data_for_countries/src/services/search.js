@@ -9,6 +9,13 @@ const getAll = () => {
     .then(data => data.map((c) => c.name.common))
 }
 
+const getCountry = (name) => {
+  return axios
+    .get(`${URL}/name/${name}`)
+    .then(res => res.data)
+}
+
 export default {
-  getAll
+  getAll,
+  getCountry
 }
