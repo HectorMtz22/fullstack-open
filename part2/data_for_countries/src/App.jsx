@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { ListCountries } from './components/ListCountries'
 import searchService from './services/search'
 
 function App() {
@@ -26,7 +27,10 @@ function App() {
           onChange={(e) => setSearch(e.target.value)} 
         />
       </div>
-      <h1>Hello World</h1>
+      <ListCountries 
+        names={names}
+        search={search}
+      />
     </>
   )
 }
