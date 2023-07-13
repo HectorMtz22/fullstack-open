@@ -14,7 +14,7 @@ import { Notification } from './components/Notification'
 
 
 const App = () => {
-  const [persons, setPersons] = useState([]) 
+  const [persons, setPersons] = useState(null) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
@@ -102,6 +102,8 @@ const App = () => {
         })
     }
   }
+
+  if (!persons) return null
 
   return (
     <div>
