@@ -30,6 +30,7 @@ function App() {
       <ListCountries 
         names={names}
         search={search}
+        setSearch={setSearch}
       />
     </>
   )
