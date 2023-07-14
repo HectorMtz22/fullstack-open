@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import searchService from '../services/search'
 
 // interface country
@@ -17,22 +17,33 @@ import searchService from '../services/search'
 */
 
 export const Country = ({name}) => {
+  const [country, setCountry] = useState(null)
   useEffect(() => {
     searchService
       .getCountry(name)
-      .then(country => console.log(country))
+      .then(data => {
+        console.log(data)
+        setCountry(data)
+      })
+  }, [name])
 
-  })
+  if (!country) return <p>Loading info...</p> 
   return (
     <>
-      <h2>Name</h2>
-      <p>Capital si</p>
-      <p>Area si</p>
+      <h2>{country.name}</h2>
+      <p>Capital {country.capital}</p>
+      <p>Area {country.area}</p>
       <h3>Languages:</h3>
       <ul>
-        <li>Si</li>
-        <li>Si</li>
+        {country.languages.map((lang) => (
+          <li key={lang}>{lang}</li>
+        ))}
       </ul>
+      <picture>
+        <source srcSet={country.flag.svg} type="image/svg+xml" />
+        <source srcSet={country.flag.png} type="image/png" />
+        <img src={country.flag.png} alt={country.flag.alt} width={480} />
+      </picture>
     </>
   )
 }

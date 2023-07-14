@@ -12,7 +12,17 @@ const getAll = () => {
 const getCountry = (name) => {
   return axios
     .get(`${URL}/name/${name}`)
-    .then(res => res.data)
+    .then(res => {
+      console.log("Data fetched", res.data)
+      return res.data
+    })
+    .then(data => ({
+        name: data.name.common,
+        area: data.area,
+        capital: data.capital[0],
+        flag: data.flags,
+        languages: Object.values(data.languages)
+    }))
 }
 
 export default {
