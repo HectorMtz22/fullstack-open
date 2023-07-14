@@ -16,12 +16,15 @@ const getWeather = ([lat, lon]) => {
       return {
         temp: data.main.temp,
         wind: data.wind.speed,
-        name: data.name
+        name: data.name,
+        icon: data.weather[0]
       }
     })
-
 }
 
+const getImage = (icon) => `https://openweathermap.org/img/wn/${icon}@2x.png`
+
 export default {
-  getWeather
+  getWeather,
+  getImage
 }
