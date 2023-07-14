@@ -26,6 +26,7 @@ export const Country = ({name}) => {
         setCountry(data)
       })
   }, [name])
+  console.log("API KEY", import.meta.env.VITE_WEATHER_API_KEY)
 
   if (!country) return <p>Loading info...</p> 
   return (
