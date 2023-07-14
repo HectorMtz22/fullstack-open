@@ -21,7 +21,8 @@ const getCountry = (name) => {
         area: data.area,
         capital: data.capital[0],
         flag: data.flags,
-        languages: Object.values(data.languages)
+        languages: Object.values(data.languages),
+        location: data.capitalInfo.latlng
     }))
 }
 

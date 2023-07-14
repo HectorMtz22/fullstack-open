@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import searchService from '../services/search'
+import { Weather } from "./Weather"
 
 // interface country
 /*
@@ -45,6 +46,7 @@ export const Country = ({name}) => {
         <source srcSet={country.flag.png} type="image/png" />
         <img src={country.flag.png} alt={country.flag.alt} width={480} />
       </picture>
+      <Weather name={name} location={country.location} />
     </>
   )
 }
