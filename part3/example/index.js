@@ -29,9 +29,14 @@ app.get('/api/notes', (req, res) => {
 
 app.get('/api/notes/:id', (request, response) => {
   const id = parseInt(request.params.id) 
+  if (Number.isNaN(id)) {
+    response.status(402).send("Bad Request")
+    return
+  }
   const note = notes.find(note => note.id === id)
   if (!note) {
     response.status(404).send("Not Found")
+    return
   }
   response.json(note)
 })
